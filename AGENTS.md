@@ -26,3 +26,16 @@
 - Dev server: npm run dev
 - Typecheck: npm run typecheck
 - Lint: npm run lint
+
+## Constraints
+- Never modify data/flights.seed.json (seed data for reset)
+- Do not install new dependencies without asking first
+- API routes return NextResponse.json(), not raw Response
+- All flight data mutations go through lib/flights.ts (readFlights/writeFlights)
+
+## Architecture
+- API routes in app/api/ handle HTTP (thin controllers)
+- Business logic lives in lib/ (server-side only, uses fs)
+- Client state in store/flightsStore.ts - single Zustand store
+- Components are client ('use client') or server (default) - don't mix
+
